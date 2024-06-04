@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 const Header = ({ isAuthenticated }) => {
   return (
     <header>
-      <div className="logo">Prop Firm Name</div>
+      <div className="logo">Abetrade</div>
       <nav>
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li><Link to="/">How it works</Link></li>
           <li><Link to="/myaccounts">My Accounts</Link></li>
           <li><Link to="/getcapital">Get Capital</Link></li>
           {isAuthenticated ? (

@@ -1,9 +1,9 @@
 // App.jsx
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-//import Header from './components/Layout/Header';
-//import Sidebar from './components/Layout/Sidebar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Layout/Header';
+import Sidebar from './components/Layout/sidebar';
 import Footer from './components/Layout/Footer';
 //import HomePage from './components/Pages/HomePage';
 
@@ -15,23 +15,21 @@ import Dashboard from './components/Pages/Dashboard';
 
 const App = () => {
   return (
-    <Router>
+    
       <div className="app">
         <Header />
         <div className="main-content">
           <Sidebar />
-          <Switch>
-
-            <Route path="/getcapital" component={GetCapital} />
-            <Route path="/login" component={Login} />
-            <Route path="/mychallenges" component={MyChallenges} />
-            <Route path="/dashboard" component={Dashboard} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </div>
+          <Routes>
+            <Route path="/GetCapital" element={GetCapital} />
+            <Route path="/Login" element={Login} />
+            <Route path="/MyChallenges" element={MyChallenges} />
+            <Route path='/Dashboard' element={Dashboard} />
+          </Routes>
+          </div>
         <Footer />
       </div>
-    </Router>
+    
   );
 };
 

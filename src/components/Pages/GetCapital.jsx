@@ -2,9 +2,9 @@
 
 import React from 'react';
 
-const GetCapitalPage = () => {
+const GetCapital = () => {
   return (
-    <div className="get-capital-page">
+    <div className="get-capital">
       <h2>Get Capital</h2>
       <div className="subscription-cards">
         <div className="subscription-card">

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const LoginPage = () => {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,7 +26,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="login">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div className="form-group">

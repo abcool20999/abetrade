@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const MyChallengesPage = () => {
+const MyChallenges = () => {
   return (
     <div className="my-challenges-page">
       <h2>My Challenges</h2>

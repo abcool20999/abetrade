@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const RegisterPage = () => {
+const Register = () => {
   const handleRegister = () => {
     // Handle registration logic
   };

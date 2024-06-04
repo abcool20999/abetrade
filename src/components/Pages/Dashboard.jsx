@@ -1,10 +1,11 @@
-// components/Pages/DashboardPage.js
+// components/Pages/Dashboard.js
 
 import React from 'react';
 
-const DashboardPage = () => {
+
+const Dashboard = () => {
   return (
-    <div className="dashboard-page">
+    <div className="dashboard">
       <h2>Current Results</h2>
       <div className="section trading-performance">
         <h3>Trading Performance</h3>

@@ -11,12 +11,12 @@ const Sidebar = () => {
       </div>
       <div className="sidebar-content">
         <ul>
-          <li><Link to="/dashboard">Dashboard</Link></li>
-          <li><Link to="/getcapital">Get Capital</Link></li>
-          <li><Link to="/mychallenges">My Challenges</Link></li>
-          <li><Link to="/myaccounts">My Accounts</Link></li>
-          <li><Link to="/myprofile">My Profile</Link></li>
-          <li><Link to="/support">Support</Link></li>
+          <li><Link to="Dashboard">Dashboard</Link></li>
+          <li><Link to="GetCapital">Get Capital</Link></li>
+          <li><Link to="MyChallenges">My Challenges</Link></li>
+          <li><Link to="MyAccounts">My Accounts</Link></li>
+          <li><Link to="myprofile">My Profile</Link></li>
+          <li><Link to="support">Support</Link></li>
         </ul>
       </div>
     </aside>
