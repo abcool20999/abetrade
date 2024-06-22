@@ -8,7 +8,7 @@ import Sidebar from './components/Layout/sidebar';
 import Footer from './components/Layout/Footer';
 //import HomePage from './components/Pages/HomePage';
 
-import GetCapital from './components/Pages/GetCapital';
+import GetCapital from './components/Pages/GetCapital/GetCapital';
 import Login from './components/Pages/Login';
 import Register from './components/Pages/Register';
 import MyChallenges from './components/Pages/MyChallenges';
@@ -70,7 +70,6 @@ const App = () => {
                 <Route path="/MyChallenges" element={<MyChallenges/>} />
                 <Route path='/Dashboard' element={<Dashboard/>} />
                 <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
-                <Route path="/getcapital" element={<MyChallenges/>} />
                 <Route path='/myprofile' element={<Dashboard/>} />
                 <Route path='/SignUp' element={<Register/>} />
 
