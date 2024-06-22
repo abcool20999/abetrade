@@ -1,16 +1,16 @@
 // App.jsx
 
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import HomePage from './components/Pages/HomePage/Hompage'
 import Sidebar from './components/Layout/sidebar';
 import Footer from './components/Layout/Footer';
-import Register from './components/Pages/Register';
 //import HomePage from './components/Pages/HomePage';
 
 import GetCapital from './components/Pages/GetCapital';
 import Login from './components/Pages/Login';
+import Register from './components/Pages/Register';
 import MyChallenges from './components/Pages/MyChallenges';
 import Dashboard from './components/Pages/DashBoard/Dashboard';
 //import NotFoundPage from './components/Pages/NotFoundPage';
@@ -42,7 +42,18 @@ import Dashboard from './components/Pages/DashBoard/Dashboard';
 //   );
 // };
 
+
 const App = () => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const theUser = localStorage.getItem("user");
+
+    if (theUser && !theUser.includes("undefined")) {
+      setUser(JSON.parse(theUser));
+    }
+  }, []);
+
   return (
     
       <div className="app w-100 container-lg">
@@ -51,7 +62,9 @@ const App = () => {
             {/* <HomePage/> */}
             <div className=''>
               <Routes>
-                <Route path='/' element={<HomePage/>} />
+                <Route path='/' element={user?.email ? <Dashboard user={user} /> : <HomePage />}
+                // element={<HomePage/>} 
+                />
                 <Route path="/GetCapital" element={<GetCapital/>} />
                 <Route path="/Login" element={<Login/>} />
                 <Route path="/MyChallenges" element={<MyChallenges/>} />

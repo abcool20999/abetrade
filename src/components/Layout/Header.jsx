@@ -22,7 +22,7 @@ const Header = ({ isAuthenticated }) => {
           ) : (
             <div className='row'>
               <li className='list-group-item border-0 col-4 m-1'><Link to="/login">Login</Link></li>
-              <li className='list-group-item border-0 col-8 bg-black text-white border-dark rounded-5'><Link to="/login">Sign Up</Link></li>
+              <li className='list-group-item border-0 col-8 bg-black text-white border-dark rounded-5'><Link to="/SignUp">Sign Up</Link></li>
             </div>
             
           )}
