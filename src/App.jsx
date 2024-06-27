@@ -8,7 +8,8 @@ import Sidebar from './components/Layout/sidebar';
 import Footer from './components/Layout/Footer';
 import Register from './components/Pages/Register';
 //import HomePage from './components/Pages/HomePage';
-
+import GetCapitalSuccess from './components/Pages/GetCapitalSuccess/GetCapitalSuccess';
+import GetCapitalConfirm from './components/Pages/GetCapitalConfirm/GetCapitalConfirm';
 import GetCapital from './components/Pages/GetCapital/GetCapital';
 import Login from './components/Pages/Login';
 import MyChallenges from './components/Pages/MyChallenges';
@@ -59,6 +60,8 @@ const App = () => {
                 <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
                 <Route path='/myprofile' element={<Dashboard/>} />
                 <Route path='/SignUp' element={<Register/>} />
+                <Route path='/GetCapitalConfirm' element={<GetCapitalConfirm/>} />
+                <Route path='/GetCapitalSuccess' element={<GetCapitalSuccess/>} />
 
               </Routes>
             </div>
