@@ -7,7 +7,8 @@ import HomePage from './components/Pages/HomePage/Hompage'
 import Sidebar from './components/Layout/sidebar';
 import Footer from './components/Layout/Footer/Footer';
 //import HomePage from './components/Pages/HomePage';
-
+import GetCapitalSuccess from './components/Pages/GetCapitalSuccess/GetCapitalSuccess';
+import GetCapitalConfirm from './components/Pages/GetCapitalConfirm/GetCapitalConfirm';
 import GetCapital from './components/Pages/GetCapital/GetCapital';
 import Login from './components/Pages/Login';
 import Logout from './components/Pages/Auth/Logout'

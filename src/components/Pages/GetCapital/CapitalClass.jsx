@@ -17,7 +17,7 @@ const CapitalClass = () => {
             <li><span className="check-mark">&#x2713;</span> 20 Days per Challenge</li>
             <li><span className="check-mark">&#x2713;</span> 10 Days per Verification</li>
           </ul>
-          <button>Get Capital</button>
+          <a className='btn bg-dark text-white' href='/GetCapitalConfirm'>Get Capital</a>
         </div>
     </div>
     </div>)
