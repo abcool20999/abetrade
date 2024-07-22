@@ -73,6 +73,10 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.chart-container{
+  width: 600px;
+  height: 500px;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

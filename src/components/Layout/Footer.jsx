@@ -4,15 +4,15 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-top">
-        <div className="footer-left">
+    <footer className="footer mt-5">
+      <div className="footer-top row justify-content-between">
+        <div className="footer-left col-4">
           <img src="/path/to/propfirm-logo.png" alt="Prop Firm Logo" />
           <span>Prop Firm Name</span>
         </div>
-        <form className="footer-right">
-          <input type="email" placeholder="Your Email" />
-          <button type="submit">Subscribe</button>
+        <form className="footer-right row col-8">
+          <input type="email" placeholder="Your Email" className='col-8 rounded-5 border-2' />
+          <button type="submit" className='col-4 rounded-5 border-white text-white border-3 bg-black'>Subscribe</button>
         </form>
       </div>
       <hr />

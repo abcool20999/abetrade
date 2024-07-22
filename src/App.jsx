@@ -5,14 +5,17 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Header from './components/Layout/Header';
 import HomePage from './components/Pages/HomePage/Hompage'
 import Sidebar from './components/Layout/sidebar';
-import Footer from './components/Layout/Footer';
+import Footer from './components/Layout/Footer/Footer';
 //import HomePage from './components/Pages/HomePage';
 
 import GetCapital from './components/Pages/GetCapital/GetCapital';
 import Login from './components/Pages/Login';
+import Logout from './components/Pages/Auth/Logout'
 import Register from './components/Pages/Register';
 import MyChallenges from './components/Pages/MyChallenges';
 import Dashboard from './components/Pages/DashBoard/Dashboard';
+import WebTrader from './components/WebTrader/WebTrader'
+import AuthProvider, {AuthIsNotSignedIn, AuthIsSignedIn} from "./components/Pages/Auth/AuthProvider";
 //import NotFoundPage from './components/Pages/NotFoundPage';
 
 // const App = () => {
@@ -61,7 +64,35 @@ const App = () => {
           <div className="main-content bg-light">  
             {/* <HomePage/> */}
             <div className=''>
-              <Routes>
+            <AuthProvider>
+              <AuthIsSignedIn>
+                  <Routes>
+                    <Route path={"/logout"} element={<Logout />} />
+                    {/* <Route path={"/protected"} element={<Protected />} /> */}
+                    <Route path='/' element={user?.email ? <Dashboard user={user} /> : <HomePage />}
+                    // element={<HomePage/>} 
+                    />
+                    <Route path="/GetCapital" element={<GetCapital/>} />
+                    <Route path="/Login" element={<Login/>} />
+                    <Route path="/MyChallenges" element={<MyChallenges/>} />
+                    <Route path='/Dashboard' element={<Dashboard/>} />
+                    <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
+                    <Route path='/myprofile' element={<Dashboard/>} />
+                    <Route path='/SignUp' element={<Register/>} />
+                    <Route path='/WebTrader' element={<WebTrader/>} />
+                  </Routes>
+              </AuthIsSignedIn>
+
+              <AuthIsNotSignedIn>
+                  <Routes>
+                    <Route path={"/login"} element={<Login />} />
+                    {/* <Route path={"/unprotected"} element={<Unprotected />} /> */}
+                    <Route path="/*" element={<Navigate replace to={"/login"} />} />
+                  </Routes>
+              </AuthIsNotSignedIn>
+            </AuthProvider>
+
+              {/* <Routes>
                 <Route path='/' element={user?.email ? <Dashboard user={user} /> : <HomePage />}
                 // element={<HomePage/>} 
                 />
@@ -72,8 +103,8 @@ const App = () => {
                 <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
                 <Route path='/myprofile' element={<Dashboard/>} />
                 <Route path='/SignUp' element={<Register/>} />
-
-              </Routes>
+                <Route path='/WebTrader' element={<WebTrader/>} />
+              </Routes> */}
             </div>
           </div>
         <Footer />

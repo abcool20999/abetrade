@@ -27,6 +27,11 @@ const UseFetch = (url) => {
         if (data?.user) {
           localStorage.setItem("user", JSON.stringify(data?.user));
           window.location.reload();
+          let token = data.user.token
+          if(token) {
+            localStorage.setItem('propAuthToken', JSON.stringify({ token})); 
+          }
+    
         }
 
         throw new Error(data?.message || data);
