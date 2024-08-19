@@ -36,13 +36,17 @@ const defaultState = {
 export const AuthContext = React.createContext(defaultState);
 
 export const AuthIsSignedIn = ({ children }) => {
+  console.log('im inside AuthIsSignedIn')
   const { authStatus } = useContext(AuthContext);
   return <>{authStatus === AuthStatus.SignedIn ? children : null}</>;
+  // return <>{ children }</>;
 };
 
 export const AuthIsNotSignedIn = ({ children }) => {
+  console.log('im inside AuthIsNotSignedIn')
   const { authStatus } = useContext(AuthContext);
   return <>{authStatus === AuthStatus.SignedOut ? children : null}</>;
+  // return <>{ children }</>;
 };
 
 const AuthProvider = ({ children }) => {
@@ -75,9 +79,9 @@ const AuthProvider = ({ children }) => {
     signOut,
   };
 
-  if (authStatus === AuthStatus.Loading) {
-    return null;
-  }
+  // if (authStatus === AuthStatus.Loading) {
+  //   return null;
+  // }
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
 };

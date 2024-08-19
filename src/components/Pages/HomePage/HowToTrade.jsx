@@ -9,7 +9,7 @@ const HowToTrade = () => {
         Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit nunc in eros scelerisque sed. Commodo in viverra nunc, ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis, pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo eleifend ultricies purus iaculis.
         </p>
         <div className='row p-4 mx-auto w-75'>
-        <img src='../../../assets/check.png' className='w-50 mx-5'></img>
+        <img src='../../../assets/howtotrade.jpg' className='w-50 mx-5'></img>
         <div className='w-25 mx-5'>
             <h3>Steps to access Fund</h3>
             <div className='row rounded-5 bg-white border-light p-2 mt-2'>

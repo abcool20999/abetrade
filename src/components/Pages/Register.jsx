@@ -84,7 +84,7 @@ const Register = () => {
       data: signUpBody
     };
 
-    axios('http://localhost:5000/api/auth/signup', config)
+    axios('http://localhost:5001/api/auth/signup', config)
     .then((response) => {
       authContext.signIn()
       console.log(JSON.stringify(response.data));
@@ -102,10 +102,11 @@ const Register = () => {
     });
   }
   const { handleGoogle, loading, error } = useFetch(
-    "http://localhost:5000/api/auth/signup"
+    "http://localhost:5001/api/auth/signup"
   );
 
   useEffect(() => {
+    //localStorage.removeItem('propAuthToken');
     const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
 
     /* global google */
@@ -128,11 +129,12 @@ const Register = () => {
       token? setLoginSuccessful(true): setLoginSuccessful(false)
       // google.accounts.id.prompt()
     }
-  }, [handleGoogle]);
+  }, [handleGoogle, isLoginSuccessful]);
 
   return (
     <div>
-    {isLoginSuccessful? <Navigate to="/Dashboard"/> :
+    {
+    isLoginSuccessful? <Navigate to="/Dashboard"/> :
       <>
       <nav style={{ padding: "2rem" }}>
         <Link to="/">Go Back</Link>
@@ -149,7 +151,7 @@ const Register = () => {
         }}
       >
         <div>
-          <form method='post' action ='http://localhost:5000/api/auth/signup'>
+          <form method='post' action ='http://localhost:5001/api/auth/signup'>
             <div className='row'>
               <label htmlFor='firstName' className='col-4'>FirstName</label>
               <input name='firstName' id='firstName' type='text' className='col-8' defaultValue=''/>

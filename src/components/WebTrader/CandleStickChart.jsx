@@ -70,6 +70,7 @@ const CandleStickChart = () => {
         })
 
           console.log(candleStickData)
+          chartContainerRef.current.innerText = ''
           display(candleStickData)
         })
         .catch(function (error) {
