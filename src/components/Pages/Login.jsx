@@ -64,7 +64,7 @@ const Login = () => {
   const [isLoginSuccessful, setLoginSuccessful] = useState(false)
   const { signIn } = useContext(AuthContext);
   const { handleGoogle, loading, error } = useFetch(
-    "http://localhost:5001/api/auth/login"
+    "https://backabetrades.onrender.com/api/auth/login"
   );
   const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
   useEffect(() => {
@@ -116,7 +116,7 @@ const Login = () => {
       data: loginBody
     };
 
-    axios('http://localhost:5001/api/auth/login', config)
+    axios('https://backabetrades.onrender.com/api/auth/login', config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
       let token = response.data.userInfo.token

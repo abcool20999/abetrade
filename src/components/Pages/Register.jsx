@@ -85,7 +85,7 @@ const Register = () => {
       data: signUpBody
     };
 
-    axios('http://localhost:5001/api/auth/signup', config)
+    axios('https://backabetrades.onrender.com/api/auth/signup', config)
     .then((response) => {
       authContext.signIn()
       console.log(JSON.stringify(response.data));
@@ -103,7 +103,7 @@ const Register = () => {
     });
   }
   const { handleGoogle, loading, error } = useFetch(
-    "http://localhost:5001/api/auth/signup"
+    "https://backabetrades.onrender.com/api/auth/signup"
   );
 
   useEffect(() => {
@@ -152,7 +152,7 @@ const Register = () => {
         }}
       >
         <div>
-          <form method='post' action ='http://localhost:5001/api/auth/signup'>
+          <form method='post' action ='https://backabetrades.onrender.com/api/auth/signup'>
             <div className='row'>
               <label htmlFor='firstName' className='col-4'>FirstName</label>
               <input name='firstName' id='firstName' type='text' className='col-8' defaultValue=''/>
