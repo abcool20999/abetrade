@@ -4,13 +4,14 @@ import React, {useEffect, useState, useRef, useContext} from 'react';
 import { createChart, ColorType } from 'lightweight-charts';
 import axios from 'axios'
 import { WebTraderContext } from './WebTraderContext';
+import appConfig from '../../../app-config';
 
 const CandleStickChart = () => {
   // const [key, setKey] = useState(null)
   // setKey(props.key)
-  const { interval } = useContext(WebTraderContext);
+  const { interval, symbolInfo, setSymbolInfo, candleStickData, setCandleStickData } = useContext(WebTraderContext);
 
-  var candleStickData
+  // var candleStickData
   const chartContainerRef = useRef();
   const {
     data,
@@ -49,11 +50,13 @@ const CandleStickChart = () => {
 
       const options = {
         method: 'GET',
-        url: `https://data.alpaca.markets/v2/stocks/bars?symbols=AAPL&timeframe=${interval || '1Min'}&start=2022-01-03T00%3A00%3A00Z&end=2022-05-04T00%3A00%3A00Z&limit=100&adjustment=raw&feed=sip&sort=asc`,
+        url: `https://data.alpaca.markets/v2/stocks/bars?symbols=${symbolInfo.symbol}&timeframe=${interval || '1Min'}&start=2022-01-03T00%3A00%3A00Z&end=2022-05-04T00%3A00%3A00Z&limit=100&adjustment=raw&feed=sip&sort=asc`,
         headers: {
           accept: 'application/json',
-          'APCA-API-KEY-ID': 'PK1TBMOBMDHONGMRGIF6',
-          'APCA-API-SECRET-KEY': 'Ghvq8PWfZQLH9ylxzAdG1LgIwQfahUOdgknxPVXp'
+          'APCA-API-KEY-ID': appConfig['APCA-API-KEY-ID'],
+          'APCA-API-SECRET-KEY': appConfig['APCA-API-SECRET-KEY']
+          // 'APCA-API-KEY-ID': 'PK1TBMOBMDHONGMRGIF6',
+          // 'APCA-API-SECRET-KEY': 'Ghvq8PWfZQLH9ylxzAdG1LgIwQfahUOdgknxPVXp'
         }
       };
 
@@ -61,7 +64,16 @@ const CandleStickChart = () => {
         .request(options)
         .then(function (response) {
           console.log(response.data);
-          let candleStickData = response.data.bars["AAPL"].map((tick)=>{
+          if(!(symbolInfo.symbol)) return
+          let arrayResult = response.data.bars[symbolInfo.symbol]
+          let length = arrayResult.length
+          let price = arrayResult[length-1]['vw']
+          // setSymbolInfo((currentState)=> {
+          //   currentState = {symbol: symbolInfo.symbol, buyPrice: price, buyValue: 1.0000, sellPrice: price, sellValue: 1.0000}
+          //   return currentState
+          // })
+            //setSymbolInfo({symbol: symbolInfo.symbol, buyPrice: price, buyValue: 1.0000, sellPrice: price, sellValue: 1.0000})
+          let candleStickData = arrayResult.map((tick)=>{
             let formattedDate = formatDate(tick.t)
             let time = extractTime(tick.t)
           return {
@@ -70,14 +82,20 @@ const CandleStickChart = () => {
         })
 
           console.log(candleStickData)
-          display(candleStickData)
+          // setCandleStickData(candleStickData)
+          // chartContainerRef.current.innerText = ''
+          // display(candleStickData)
         })
         .catch(function (error) {
           console.error(error);
         });
 
+        // console.log(candleStickData)
+        chartContainerRef.current.innerText = ''
+        display(candleStickData)
+
       // () => {
-        const handleResize = () => {
+        var handleResize = () => {
             chart.applyOptions({ width: chartContainerRef.current.clientWidth });
         };
 
@@ -110,6 +128,7 @@ const CandleStickChart = () => {
           return formattedDate
         }
         function display(candleStickData){
+          if(candleStickData.length<1) return
           var chartElement = document.getElementById('container')
           const chartOptions = { 
             layout: { 
@@ -152,7 +171,7 @@ const CandleStickChart = () => {
       
         //}
       }
-  }, [interval, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor])
+  }, [interval, candleStickData, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor])
 
   return (
     <div className = 'chart-container'

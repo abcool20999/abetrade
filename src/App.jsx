@@ -16,7 +16,7 @@ import Register from './components/Pages/Register';
 import MyChallenges from './components/Pages/MyChallenges';
 import Dashboard from './components/Pages/DashBoard/Dashboard';
 import WebTrader from './components/WebTrader/WebTrader'
-import AuthProvider, {AuthIsNotSignedIn, AuthIsSignedIn} from "./components/Pages/Auth/AuthProvider";
+import AuthProvider, {AuthIsNotSignedIn, AuthIsSignedIn, getAuthToken} from "./components/Pages/Auth/AuthProvider";
 //import NotFoundPage from './components/Pages/NotFoundPage';
 
 // const App = () => {
@@ -49,54 +49,45 @@ import AuthProvider, {AuthIsNotSignedIn, AuthIsSignedIn} from "./components/Page
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const theUser = localStorage.getItem("user");
-
-    if (theUser && !theUser.includes("undefined")) {
-      setUser(JSON.parse(theUser));
+    console.log('useEffect called')
+    var token = getAuthToken()
+    if(token) {
+      setIsAuthenticated(true)
+      console.log('IsAuthenticated true')
+      console.log(isAuthenticated)
     }
-  }, []);
+    else {
+      setIsAuthenticated(false)
+      console.log('IsAuthenticated false')
+      console.log(isAuthenticated)
+    }
+    // const theUser = localStorage.getItem("user");
+
+    // if (theUser && !theUser.includes("undefined")) {
+    //   setUser(JSON.parse(theUser));
+    // }
+  }, [isAuthenticated]);
 
   return (
     
-      <div className="app w-100 container-lg">
-        <Header />
-          <div className="main-content bg-light">  
-            {/* <HomePage/> */}
-            <div className=''>
-            <AuthProvider>
-              <AuthIsSignedIn>
-                  <Routes>
-                    <Route path={"/logout"} element={<Logout />} />
-                    {/* <Route path={"/protected"} element={<Protected />} /> */}
-                    <Route path='/' element={user?.email ? <Dashboard user={user} /> : <HomePage />}
-                    // element={<HomePage/>} 
-                    />
-                    <Route path="/GetCapital" element={<GetCapital/>} />
-                    <Route path="/Login" element={<Login/>} />
-                    <Route path="/MyChallenges" element={<MyChallenges/>} />
-                    <Route path='/Dashboard' element={<Dashboard/>} />
-                    <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
-                    <Route path='/myprofile' element={<Dashboard/>} />
-                    <Route path='/SignUp' element={<Register/>} />
-                    <Route path='/WebTrader' element={<WebTrader/>} />
-                  </Routes>
-              </AuthIsSignedIn>
-
-              <AuthIsNotSignedIn>
-                  <Routes>
-                    <Route path={"/login"} element={<Login />} />
-                    {/* <Route path={"/unprotected"} element={<Unprotected />} /> */}
-                    <Route path="/*" element={<Navigate replace to={"/login"} />} />
-                  </Routes>
-              </AuthIsNotSignedIn>
-            </AuthProvider>
-
-              {/* <Routes>
-                <Route path='/' element={user?.email ? <Dashboard user={user} /> : <HomePage />}
+    <div className="app w-100 container-lg">
+      <Header isAuthenticated = {isAuthenticated}/>
+        {      console.log(`isAuthenticated in render is ${isAuthenticated}`)        }
+        <div className="main-content bg-light">  
+          {/* <HomePage/> */}
+          <div className=''>
+          <AuthProvider>
+            <AuthIsSignedIn>
+              <Routes>
+                <Route path={"/logout"} element={<Logout />} />
+                {/* <Route path={"/protected"} element={<Protected />} /> */}
+                <Route path='/' element={isAuthenticated ? <Dashboard user={user} /> : <HomePage />}
                 // element={<HomePage/>} 
                 />
+                
                 <Route path="/GetCapital" element={<GetCapital/>} />
                 <Route path="/Login" element={<Login/>} />
                 <Route path="/MyChallenges" element={<MyChallenges/>} />
@@ -105,13 +96,91 @@ const App = () => {
                 <Route path='/myprofile' element={<Dashboard/>} />
                 <Route path='/SignUp' element={<Register/>} />
                 <Route path='/WebTrader' element={<WebTrader/>} />
-              </Routes> */}
-            </div>
+
+              </Routes>
+            </AuthIsSignedIn>
+            <AuthIsNotSignedIn>
+              <Routes>
+                <Route path='/SignUp' element={<Register/>} />
+                <Route path={"/logout"} element={<Logout />} />
+                  {/* <Route path={"/protected"} element={<Protected />} /> */}
+                  <Route path='/' element= {<HomePage />}
+                  // element={<HomePage/>} 
+                  />
+                  <Route path="/Login" element={<Login/>} />
+              </Routes>
+            </AuthIsNotSignedIn>
+          </AuthProvider>
+
+            {/* <Routes>
+              <Route path='/' element={user?.email ? <Dashboard user={user} /> : <HomePage />}
+              // element={<HomePage/>} 
+              />
+              <Route path="/GetCapital" element={<GetCapital/>} />
+              <Route path="/Login" element={<Login/>} />
+              <Route path="/MyChallenges" element={<MyChallenges/>} />
+              <Route path='/Dashboard' element={<Dashboard/>} />
+              <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
+              <Route path='/myprofile' element={<Dashboard/>} />
+              <Route path='/SignUp' element={<Register/>} />
+              <Route path='/WebTrader' element={<WebTrader/>} />
+            </Routes> */}
           </div>
-        <Footer />
-      </div>
+        </div>
+      <Footer />
+    </div>
+  
+);
+
+  // return (
     
-  );
+  //     <div className="app w-100 container-lg">
+  //       <Header />
+  //         <div className="main-content bg-light">  
+  //           {/* <HomePage/> */}
+  //           <div className=''>
+  //           <AuthProvider>
+  //             <AuthIsSignedIn>
+  //                 <Routes>
+  //                   <Route path={"/logout"} element={<Logout />} />
+  //                   {/* <Route path={"/protected"} element={<Protected />} /> */}
+  //                   <Route path='/' element={user.email ? <Dashboard user={user} /> : <HomePage />}
+  //                   // element={<HomePage/>} 
+  //                   />
+                    
+  //                   <Route path="/GetCapital" element={<GetCapital/>} />
+  //                   <Route path="/Login" element={<Login/>} />
+  //                   <Route path="/MyChallenges" element={<MyChallenges/>} />
+  //                   <Route path='/Dashboard' element={<Dashboard/>} />
+  //                   <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
+  //                   <Route path='/myprofile' element={<Dashboard/>} />
+  //                   <Route path='/SignUp' element={<Register/>} />
+  //                   <Route path='/WebTrader' element={<WebTrader/>} />
+
+  //                 </Routes>
+  //             </AuthIsSignedIn>
+
+  //           </AuthProvider>
+
+  //             {/* <Routes>
+  //               <Route path='/' element={user?.email ? <Dashboard user={user} /> : <HomePage />}
+  //               // element={<HomePage/>} 
+  //               />
+  //               <Route path="/GetCapital" element={<GetCapital/>} />
+  //               <Route path="/Login" element={<Login/>} />
+  //               <Route path="/MyChallenges" element={<MyChallenges/>} />
+  //               <Route path='/Dashboard' element={<Dashboard/>} />
+  //               <Route path="/myaccounts" element={<Navigate to="/Dashboard"/>} />
+  //               <Route path='/myprofile' element={<Dashboard/>} />
+  //               <Route path='/SignUp' element={<Register/>} />
+  //               <Route path='/WebTrader' element={<WebTrader/>} />
+  //             </Routes> */}
+  //           </div>
+  //         </div>
+  //       <Footer />
+  //     </div>
+    
+  // );
 };
 export default App;
 

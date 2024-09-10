@@ -54,22 +54,30 @@ import axios from 'axios'
 // import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useFetch from "../../UseFetch";
-
+import { useContext } from "react";
+import {AuthContext} from "./Auth/AuthProvider";
+import appConfig from '../../../app-config';
 // https://developers.google.com/identity/gsi/web/reference/js-reference
 
 const Login = () => {
   const [isLoginSuccessful, setLoginSuccessful] = useState(false)
+  const { signIn } = useContext(AuthContext);
   const { handleGoogle, loading, error } = useFetch(
-    "http://localhost:5000/api/auth/login"
+    //"http://localhost:5000/api/auth/login"
+    `${appConfig.BACKEND_BASE_URL}/api/auth/login`
   );
-  const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
+  // const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
+  const VITE_REACT_APP_GOOGLE_CLIENT_ID=appConfig.VITE_REACT_APP_GOOGLE_CLIENT_ID
   useEffect(() => {
+
     //var clientid = import.meta.env.VITE_REACT_APP_GOOGLE_CLIENT_ID
     var clientid = VITE_REACT_APP_GOOGLE_CLIENT_ID
     console.log(clientid)
     /* global google */
     if (window.google) {
-      google.accounts.id.initialize({
+        // console.log('removing token before login')
+        // localStorage.removeItem('propAuthToken');
+        google.accounts.id.initialize({
         //client_id: import.meta.env.VITE_REACT_APP_GOOGLE_CLIENT_ID,
         client_id: VITE_REACT_APP_GOOGLE_CLIENT_ID,
         callback: handleGoogle,
@@ -85,9 +93,11 @@ const Login = () => {
 
       // google.accounts.id.prompt()    
       }
-  }, [handleGoogle]);
+  }, [handleGoogle, isLoginSuccessful]);
 
   function formLogin(){
+    // console.log('removing token before login')
+    // localStorage.removeItem('propAuthToken');
     var emailElement = document.getElementById('email')
     var passwordElement = document.getElementById('password')
     var hiddenElement = document.getElementById('from')
@@ -107,14 +117,15 @@ const Login = () => {
       data: loginBody
     };
 
-    axios('http://localhost:5000/api/auth/login', config)
+    axios(`${appConfig.BACKEND_BASE_URL}/api/auth/login`, config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
-      let token = response.data.user.token
+      let token = response.data.userInfo.token
       if(token) {
-        localStorage.setItem('propAuthToken', JSON.stringify({ token})); 
+        localStorage.setItem('propAuthToken', token); 
         // const navigate = useNavigate();
         // navigate('/Dashboard');
+        //signIn()
         setLoginSuccessful(true)
       }
 
