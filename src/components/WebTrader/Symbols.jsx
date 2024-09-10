@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState, useContext} from 'react';
 import { WebTraderContext } from './WebTraderContext';
+<<<<<<< HEAD
 import axios from 'axios'
 import appConfig from '../../../app-config';
 const Symbols = () => {
@@ -97,6 +98,10 @@ const Symbols = () => {
       });
 
   }
+=======
+const Symbols = () => {
+  const { setSymbolInfo } = useContext(WebTraderContext);
+>>>>>>> refs/remotes/origin/master
   return (
     <div className='col'>
       <div className='row'>
@@ -113,6 +118,7 @@ const Symbols = () => {
           </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
           <tr onClick={() => setSymbol('AAPL') }>
             <td>AAPL</td>
             <td>1.9876</td>
@@ -130,6 +136,25 @@ const Symbols = () => {
             <td>1.7876</td>
           </tr>
           <tr onClick={() => setSymbol('ZSE') }>
+=======
+          <tr>
+            <td>AAPL</td>
+            <td>1.9876</td>
+          </tr>
+          <tr onClick={() => setSymbolInfo({symbol: 'GOOG', buyPrice: 1.9876, buyValue: 1.0000, sellPrice: 1.9876, sellValue: 1.0000})}>
+            <td class='symbol'>GOOG</td>
+            <td>1.9876</td>
+          </tr>
+          <tr onClick={() => setSymbolInfo({symbol: 'MSF', buyPrice: 1.8876, buyValue: 1.0000, sellPrice: 1.8876, sellValue: 1.0000})}>
+            <td class='symbol'>MSF</td>
+            <td>1.8876</td>
+          </tr>
+          <tr onClick={() => setSymbolInfo({symbol: 'FRD', buyPrice: 1.7876, buyValue: 1.0000, sellPrice: 1.7876, sellValue: 1.0000})}>
+            <td class='symbol'>FRD</td>
+            <td>1.7876</td>
+          </tr>
+          <tr onClick={() => setSymbolInfo({symbol: 'ZSE', buyPrice: 1.6876, buyValue: 1.0000, sellPrice: 1.6876, sellValue: 1.0000})}>
+>>>>>>> refs/remotes/origin/master
             <td class='symbol'>ZSE</td>
             <td>1.6876</td>
           </tr>

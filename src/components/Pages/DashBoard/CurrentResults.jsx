@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useEffect, useState, useContext} from 'react';
 import appConfig from '../../../../app-config';
 import axios from 'axios'
@@ -44,12 +45,18 @@ const CurrentResults = () => {
     
     }, [orders, setOrders, positions, setPositions])
 
+=======
+import React from 'react';
+
+const CurrentResults = () => {
+>>>>>>> refs/remotes/origin/master
     return (
         <div className='row m-3 border-2 border-black'>
             <div className=''>
                 <h4>Current Results</h4>
             </div>
             <div className=''>
+<<<<<<< HEAD
                 {!orders?<div>No data to show yet...start trading to start tracking results</div>:
                                 <table>
                                 <thead>
@@ -84,6 +91,9 @@ const CurrentResults = () => {
             
                 }
                 
+=======
+                <div>No data to show yet...start trading to start tracking results</div>
+>>>>>>> refs/remotes/origin/master
             </div>
         </div>
     )};

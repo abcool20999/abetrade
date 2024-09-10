@@ -11,7 +11,11 @@ const AboutUs = () => {
                 <button className="bg-black text-white ">Read More</button>
             </div>
             <div className='col-6 p-2'>
+<<<<<<< HEAD
                 <img src='../../../assets/check.png' className='w-50'>
+=======
+                <img src='../../../assets/fx.webp' className='w-50'>
+>>>>>>> refs/remotes/origin/master
                 </img>
             </div>
         </div>

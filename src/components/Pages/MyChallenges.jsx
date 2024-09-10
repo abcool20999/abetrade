@@ -1,6 +1,10 @@
 // components/Pages/MyChallengesPage.js
 
 import React from 'react';
+<<<<<<< HEAD
+=======
+import './MyChallengesPage.css';
+>>>>>>> refs/remotes/origin/master
 
 const MyChallenges = () => {
   return (

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 // components/Pages/LoginPage.js
 
 import {React, useEffect, useState} from 'react';
@@ -56,18 +60,28 @@ import { Link } from "react-router-dom";
 import useFetch from "../../UseFetch";
 import { useContext } from "react";
 import {AuthContext} from "./Auth/AuthProvider";
+<<<<<<< HEAD
 import appConfig from '../../../app-config';
+=======
+
+>>>>>>> refs/remotes/origin/master
 // https://developers.google.com/identity/gsi/web/reference/js-reference
 
 const Login = () => {
   const [isLoginSuccessful, setLoginSuccessful] = useState(false)
   const { signIn } = useContext(AuthContext);
   const { handleGoogle, loading, error } = useFetch(
+<<<<<<< HEAD
     //"http://localhost:5000/api/auth/login"
     `${appConfig.BACKEND_BASE_URL}/api/auth/login`
   );
   // const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
   const VITE_REACT_APP_GOOGLE_CLIENT_ID=appConfig.VITE_REACT_APP_GOOGLE_CLIENT_ID
+=======
+    "http://localhost:5001/api/auth/login"
+  );
+  const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
+>>>>>>> refs/remotes/origin/master
   useEffect(() => {
 
     //var clientid = import.meta.env.VITE_REACT_APP_GOOGLE_CLIENT_ID
@@ -117,7 +131,11 @@ const Login = () => {
       data: loginBody
     };
 
+<<<<<<< HEAD
     axios(`${appConfig.BACKEND_BASE_URL}/api/auth/login`, config)
+=======
+    axios('http://localhost:5001/api/auth/login', config)
+>>>>>>> refs/remotes/origin/master
     .then((response) => {
       console.log(JSON.stringify(response.data));
       let token = response.data.userInfo.token

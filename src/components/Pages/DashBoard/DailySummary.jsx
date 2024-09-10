@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useContext, useEffect, useState} from 'react';
 import { DashBoardContext } from './DashBoardContext';
 const DailySummary = () => {
@@ -30,12 +31,18 @@ const DailySummary = () => {
       setAggregateLastReadEquity(aggregateLastReadEquity)
     }
   }, [positions])
+=======
+import React from 'react';
+
+const DailySummary = () => {
+>>>>>>> refs/remotes/origin/master
     return (
         <div className="my-5 border-dark">
           <h6 className='text-start'>Daily Summary</h6>
           <table className='table'>
             <thead>
               <tr>
+<<<<<<< HEAD
                 <th className='mr-1'><small>Today's Loss</small></th>
                 <th className='mr-1'><small>Total Loss</small></th>
                 <th className='mr-1'><small>Max Permitted Loss</small></th>
@@ -43,10 +50,18 @@ const DailySummary = () => {
                 <th className='mr-1'><small>Today's Profit</small></th>
                 <th className='mr-1'><small>Total Profit</small></th>
                 <th className='mr-1'><small>Last Read Equity</small></th>
+=======
+                <th><small>Today's Loss</small></th>
+                <th><small>Max Permitted Loss</small></th>
+                <th><small>Daily Drawdown</small></th>
+                <th><small>Today's Profit</small></th>
+                <th><small>Last Read Equity</small></th>
+>>>>>>> refs/remotes/origin/master
               </tr>
             </thead>
             <tbody>
               {/* Placeholder for daily summary data */}
+<<<<<<< HEAD
               {/* {positions.map((position, index)=>{
                 <td></td>
               })} 
@@ -116,6 +131,8 @@ Object
                 <th><small>{aggregateP>0? aggregateP: '-'}</small></th>
                <th><small>{aggregateTP>0? aggregateTP: '-'}</small></th>
                 <th><small>{aggregateLastReadEquity}</small></th>
+=======
+>>>>>>> refs/remotes/origin/master
             </tbody>
           </table>
         </div>

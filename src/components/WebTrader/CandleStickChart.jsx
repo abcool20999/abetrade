@@ -4,14 +4,23 @@ import React, {useEffect, useState, useRef, useContext} from 'react';
 import { createChart, ColorType } from 'lightweight-charts';
 import axios from 'axios'
 import { WebTraderContext } from './WebTraderContext';
+<<<<<<< HEAD
 import appConfig from '../../../app-config';
+=======
+>>>>>>> refs/remotes/origin/master
 
 const CandleStickChart = () => {
   // const [key, setKey] = useState(null)
   // setKey(props.key)
+<<<<<<< HEAD
   const { interval, symbolInfo, setSymbolInfo, candleStickData, setCandleStickData } = useContext(WebTraderContext);
 
   // var candleStickData
+=======
+  const { interval } = useContext(WebTraderContext);
+
+  var candleStickData
+>>>>>>> refs/remotes/origin/master
   const chartContainerRef = useRef();
   const {
     data,
@@ -50,6 +59,7 @@ const CandleStickChart = () => {
 
       const options = {
         method: 'GET',
+<<<<<<< HEAD
         url: `https://data.alpaca.markets/v2/stocks/bars?symbols=${symbolInfo.symbol}&timeframe=${interval || '1Min'}&start=2022-01-03T00%3A00%3A00Z&end=2022-05-04T00%3A00%3A00Z&limit=100&adjustment=raw&feed=sip&sort=asc`,
         headers: {
           accept: 'application/json',
@@ -57,6 +67,13 @@ const CandleStickChart = () => {
           'APCA-API-SECRET-KEY': appConfig['APCA-API-SECRET-KEY']
           // 'APCA-API-KEY-ID': 'PK1TBMOBMDHONGMRGIF6',
           // 'APCA-API-SECRET-KEY': 'Ghvq8PWfZQLH9ylxzAdG1LgIwQfahUOdgknxPVXp'
+=======
+        url: `https://data.alpaca.markets/v2/stocks/bars?symbols=AAPL&timeframe=${interval || '1Min'}&start=2022-01-03T00%3A00%3A00Z&end=2022-05-04T00%3A00%3A00Z&limit=100&adjustment=raw&feed=sip&sort=asc`,
+        headers: {
+          accept: 'application/json',
+          'APCA-API-KEY-ID': 'PK1TBMOBMDHONGMRGIF6',
+          'APCA-API-SECRET-KEY': 'Ghvq8PWfZQLH9ylxzAdG1LgIwQfahUOdgknxPVXp'
+>>>>>>> refs/remotes/origin/master
         }
       };
 
@@ -64,6 +81,7 @@ const CandleStickChart = () => {
         .request(options)
         .then(function (response) {
           console.log(response.data);
+<<<<<<< HEAD
           if(!(symbolInfo.symbol)) return
           let arrayResult = response.data.bars[symbolInfo.symbol]
           let length = arrayResult.length
@@ -74,6 +92,9 @@ const CandleStickChart = () => {
           // })
             //setSymbolInfo({symbol: symbolInfo.symbol, buyPrice: price, buyValue: 1.0000, sellPrice: price, sellValue: 1.0000})
           let candleStickData = arrayResult.map((tick)=>{
+=======
+          let candleStickData = response.data.bars["AAPL"].map((tick)=>{
+>>>>>>> refs/remotes/origin/master
             let formattedDate = formatDate(tick.t)
             let time = extractTime(tick.t)
           return {
@@ -82,20 +103,30 @@ const CandleStickChart = () => {
         })
 
           console.log(candleStickData)
+<<<<<<< HEAD
           // setCandleStickData(candleStickData)
           // chartContainerRef.current.innerText = ''
           // display(candleStickData)
+=======
+          chartContainerRef.current.innerText = ''
+          display(candleStickData)
+>>>>>>> refs/remotes/origin/master
         })
         .catch(function (error) {
           console.error(error);
         });
 
+<<<<<<< HEAD
         // console.log(candleStickData)
         chartContainerRef.current.innerText = ''
         display(candleStickData)
 
       // () => {
         var handleResize = () => {
+=======
+      // () => {
+        const handleResize = () => {
+>>>>>>> refs/remotes/origin/master
             chart.applyOptions({ width: chartContainerRef.current.clientWidth });
         };
 
@@ -128,7 +159,10 @@ const CandleStickChart = () => {
           return formattedDate
         }
         function display(candleStickData){
+<<<<<<< HEAD
           if(candleStickData.length<1) return
+=======
+>>>>>>> refs/remotes/origin/master
           var chartElement = document.getElementById('container')
           const chartOptions = { 
             layout: { 
@@ -171,7 +205,11 @@ const CandleStickChart = () => {
       
         //}
       }
+<<<<<<< HEAD
   }, [interval, candleStickData, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor])
+=======
+  }, [interval, backgroundColor, lineColor, textColor, areaTopColor, areaBottomColor])
+>>>>>>> refs/remotes/origin/master
 
   return (
     <div className = 'chart-container'

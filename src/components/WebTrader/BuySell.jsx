@@ -1,5 +1,6 @@
 // components/Layout/Footer.js
 
+<<<<<<< HEAD
 import React, {useEffect, useState, useContext, useRef} from 'react';
 import { WebTraderContext } from './WebTraderContext';
 import axios from 'axios'
@@ -81,20 +82,46 @@ const BuySell = () => {
     await placeOrder('sell')
   }
   async function placeOrder(flag){
+=======
+import React, {useEffect, useState, useContext} from 'react';
+import { WebTraderContext } from './WebTraderContext';
+import axios from 'axios'
+
+const BuySell = () => {
+  const { symbolInfo } = useContext(WebTraderContext);
+  useEffect(()=>{
+    console.log('symbol info ', symbolInfo)
+  },[symbolInfo])
+  function buy(){
+    placeOrder('buy')
+  }
+  function sell(){
+    placeOrder('sell')
+  }
+  function placeOrder(flag){
+>>>>>>> refs/remotes/origin/master
     let price
     let value
     let symbol = document.getElementById('symbol')
     switch (flag) {
       case 'buy':
         price = symbolInfo.buyPrice
+<<<<<<< HEAD
         value = calculatedBuyValue || 0.001
+=======
+        value = symbolInfo.buyValue
+>>>>>>> refs/remotes/origin/master
         // price = document.getElementById('buyprice')
         // value = document.getElementById('buyvalue')
         break;
     
       case 'sell':
         price = symbolInfo.sellPrice
+<<<<<<< HEAD
         value = calculatedSellValue || 0.001
+=======
+        value = symbolInfo.sellValue
+>>>>>>> refs/remotes/origin/master
         // price = document.getElementById('sellprice')
         // value = document.getElementById('sellvalue')
         break;
@@ -123,6 +150,7 @@ const BuySell = () => {
       data: body
     };
 
+<<<<<<< HEAD
     axios(`${appConfig.BACKEND_BASE_URL}/api/order/place_order`, config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
@@ -136,18 +164,41 @@ const BuySell = () => {
 
     //this also sets the account on the context
     let account = await getAccountById()
+=======
+    axios('http://localhost:5001/api/order/place_order', config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+
+      // let token = response.data.user.token
+      // if(token) {
+      //   localStorage.setItem('propAuthToken', JSON.stringify({ token})); 
+      //   // const navigate = useNavigate();
+      //   // navigate('/Dashboard');
+      //   setLoginSuccessful(true)
+      // }
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+>>>>>>> refs/remotes/origin/master
   }
   return (
     <div className='col px-4 my-4'>
       <div>{symbolInfo.symbol}</div>
       <div className='row'>
         <div className='col-4'>Spot Trading</div>
+<<<<<<< HEAD
         <div className='col-8' style={{"margin-left": '-50px'}}><span>Available Balance </span><span><b>{account.last_equity}USD</b></span></div>
+=======
+        <div className='col-8' style={{"margin-left": '-50px'}}><span>Available Balance </span><span><b>500USD</b></span></div>
+>>>>>>> refs/remotes/origin/master
       </div>
 
       <div className='row'>
         <div className='col-4'>
           <div className='row'>
+<<<<<<< HEAD
             <div className='col-4'>Price Per Share</div>
             <div className='col-4' id=''>{symbolInfo.buyPricePerShare}</div>
           </div>
@@ -160,10 +211,19 @@ const BuySell = () => {
             
             <div className='col-4'><input ref={buyValueRef} onChange={handleBuyInputChange} type="number" id='buyvalue' style={{width: '100px'}} step="1" min="0" placeholder="Enter a number" /></div>
             {/* <div className='col-4' id='buyvalue'>{symbolInfo.buyValue}</div> */}
+=======
+            <div className='col-4'>Price</div>
+            <div className='col-4' id='buyprice'>{symbolInfo.buyPrice}</div>
+          </div>
+          <div className='row'>
+            <div className='col-4'>Value</div>
+            <div className='col-4' id='buyvalue'>{symbolInfo.buyValue}</div>
+>>>>>>> refs/remotes/origin/master
           </div>
         </div>
         <div className='col-8'>
           <div className='row ms-2'>
+<<<<<<< HEAD
             <div className='col-4'>Price Per Share</div>
             <div className='col-4' id='sellpricepershare'>{symbolInfo.sellPricePerShare}</div>
           </div>
@@ -176,6 +236,14 @@ const BuySell = () => {
             
             <div className='col-4'><input ref={sellValueRef} onChange={handleSellInputChange} type="number" id='sellvalue' style={{width: '100px'}} step="1" min="0" placeholder="Enter a number" /></div>
             {/* <div className='col-4' id='sellvalue'>{symbolInfo.sellValue}</div> */}
+=======
+            <div className='col-4'>Price</div>
+            <div className='col-4' id='sellprice'>{symbolInfo.sellPrice}</div>
+          </div>
+          <div className='row ms-2' >
+            <div className='col-4'>Value</div>
+            <div className='col-4' id='sellvalue'>{symbolInfo.sellValue}</div>
+>>>>>>> refs/remotes/origin/master
           </div>
         </div>
       </div>
@@ -188,6 +256,7 @@ const BuySell = () => {
           Sell
         </div>
       </div>
+<<<<<<< HEAD
 
       <div id="successModal" class="modal">
         <div class="modal-content">
@@ -212,6 +281,8 @@ const BuySell = () => {
             <button class="modalbtn">Ok</button>
         </div>
     </div>
+=======
+>>>>>>> refs/remotes/origin/master
     </div>
   );
 };
