@@ -1,6 +1,7 @@
 // components/Pages/MyChallengesPage.js
 
 import React from 'react';
+import './MyChallengesPage.css';
 
 const MyChallenges = () => {
   return (
