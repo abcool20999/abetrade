@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
 // App.jsx
 
 import {React, useEffect, useState} from 'react';
@@ -100,11 +97,10 @@ const App = () => {
                 <Route path='/myprofile' element={<Dashboard/>} />
                 <Route path='/SignUp' element={<Register/>} />
                 <Route path='/WebTrader' element={<WebTrader/>} />
-<<<<<<< HEAD
-=======
+
                 <Route path='/GetCapitalConfirm' element={<GetCapitalConfirm/>} />
                 <Route path='/GetCapitalSuccess' element={<GetCapitalSuccess/>} />
->>>>>>> refs/remotes/origin/master
+
 
               </Routes>
             </AuthIsSignedIn>
@@ -192,7 +188,4 @@ const App = () => {
   // );
 };
 export default App;
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/master
