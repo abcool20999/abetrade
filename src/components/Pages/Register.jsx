@@ -1,6 +1,7 @@
 // components/Pages/RegisterPage.js
 
 import React from 'react';
+import './RegisterPage.css'; 
 
 const SignUp = () => {
   const handleRegister = () => {
@@ -50,6 +51,7 @@ import { Link, Navigate } from "react-router-dom";
 import useFetch from "../../UseFetch";
 import { AuthContext, getAuthToken } from "./Auth/AuthProvider";
 import axios from 'axios'
+import appConfig from '../../../app-config';
 // https://developers.google.com/identity/gsi/web/reference/js-reference
 
 const Register = () => {
@@ -84,7 +86,7 @@ const Register = () => {
       data: signUpBody
     };
 
-    axios('http://localhost:5000/api/auth/signup', config)
+    axios(`${appConfig.BACKEND_BASE_URL}/api/auth/signup`, config)
     .then((response) => {
       authContext.signIn()
       console.log(JSON.stringify(response.data));
@@ -102,12 +104,13 @@ const Register = () => {
     });
   }
   const { handleGoogle, loading, error } = useFetch(
-    "http://localhost:5000/api/auth/signup"
+    `${appConfig.BACKEND_BASE_URL}/api/auth/signup`
   );
 
   useEffect(() => {
-    const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
-
+    //localStorage.removeItem('propAuthToken');
+    // const VITE_REACT_APP_GOOGLE_CLIENT_ID="596693022834-oou2lgt3l76t8329mbvjo0p3ss6330ho.apps.googleusercontent.com"
+    const VITE_REACT_APP_GOOGLE_CLIENT_ID=appConfig.VITE_REACT_APP_GOOGLE_CLIENT_ID
     /* global google */
     if (window.google) {
       google.accounts.id.initialize({
@@ -128,11 +131,12 @@ const Register = () => {
       token? setLoginSuccessful(true): setLoginSuccessful(false)
       // google.accounts.id.prompt()
     }
-  }, [handleGoogle]);
+  }, [handleGoogle, isLoginSuccessful]);
 
   return (
     <div>
-    {isLoginSuccessful? <Navigate to="/Dashboard"/> :
+    {
+    isLoginSuccessful? <Navigate to="/Dashboard"/> :
       <>
       <nav style={{ padding: "2rem" }}>
         <Link to="/">Go Back</Link>
@@ -149,7 +153,7 @@ const Register = () => {
         }}
       >
         <div>
-          <form method='post' action ='http://localhost:5000/api/auth/signup'>
+          <form method='post' action = {`${appConfig.BACKEND_BASE_URL}/api/auth/signup`}>
             <div className='row'>
               <label htmlFor='firstName' className='col-4'>FirstName</label>
               <input name='firstName' id='firstName' type='text' className='col-8' defaultValue=''/>

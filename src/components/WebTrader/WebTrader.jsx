@@ -7,6 +7,7 @@ import BuySell from './BuySell'
 import Symbols from './Symbols';
 import {WebTraderContextProvider} from './WebTraderContext'
 import Sidebar from '../Layout/sidebar';
+import './WebTrader.css'; 
 
 const WebTrader = () => {
 
